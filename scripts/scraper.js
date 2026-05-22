@@ -32,14 +32,20 @@ async function extractArticleText(url) {
 async function summarizeWithGemini(text, title, url) {
   try {
     const prompt = `
-      You are a public policy research assistant. I will provide you with an article text. 
+      You are an executive assistant for a busy C-suite executive. I will provide you with an article text. 
       I want you to analyze it and return a JSON object with the following structure:
       {
-        "summary": "A 3-4 sentence simplified summary of the article.",
-        "topics": ["Array of 2-3 broad topic tags, e.g., 'Geopolitics', 'Economics', 'Tech Policy'"],
-        "issues": ["Array of 1-2 specific issues addressed, e.g., 'US-China Tech War'"],
+        "summary": "A 3-4 sentence summary of the article.",
+        "topics": ["Array of 2-3 broad topic tags, e.g., 'Geopolitics', 'Economics'"],
+        "issues": ["Array of 1-2 specific issues addressed, e.g., 'US-China Relations'"],
         "mainIdeas": ["Array of 2-3 key takeaways or main arguments made by the author"]
       }
+      
+      CRITICAL INSTRUCTIONS FOR TONE AND LANGUAGE:
+      - Write in plain, clear English suitable for a well-informed adult.
+      - DO NOT use academic International Relations (IR) jargon or convoluted phrasing (e.g., avoid terms like "constructive strategic stability", "middle powers", "strategic autonomy", "reciprocal concessions").
+      - Break down complex policy ideas into their practical, real-world meaning.
+      - Be direct and get straight to the point.
       
       Article Title: ${title}
       Article Text:

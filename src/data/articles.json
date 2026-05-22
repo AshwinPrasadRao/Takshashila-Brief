@@ -1,51 +1,28 @@
 {
   "articles": [
     {
-      "id": "17794582974658dhb8q",
-      "url": "https://timesofindia.indiatimes.com/blogs/toi-edit-page/a-great-power-summit-that-sends-a-message-to-the-middle-powers",
-      "title": "A great-power summit that sends a message to the middle powers",
-      "metadataRaw": "May 17, 2026 Anushka Saxena Times of India",
+      "id": "17794603113259pmgdr",
+      "url": "https://ndtv.com/opinion/pakistans-taliban-blowback-is-entering-a-dangerous-new-phase-11517107",
+      "title": "3 Blasts In A Week: Pakistan’s Taliban Blowback Is Entering A Dangerous New Phase",
+      "metadataRaw": "May 20, 2026 Aishwaria Sonavane NDTV",
       "source": "Takshashila Opinion",
-      "dateAdded": "2026-05-22T13:58:17.465Z",
-      "summary": "The recent US-China summit underscored a deeply competitive relationship, with China advocating for \"constructive strategic stability\" to manage long-term rivalry rather than seeking harmony. While the US prioritized securing market access deals, genuine reciprocal concessions proved challenging, highlighting ongoing competition in critical sectors. A significant outcome for middle powers is the message that the US may be shifting away from its traditional alliance leadership, compelling them to pursue greater strategic autonomy and diversify partnerships.",
+      "dateAdded": "2026-05-22T14:31:51.325Z",
+      "summary": "Pakistan is experiencing a dangerous escalation in domestic terrorism, particularly in its northwest, with a recent series of high-impact attacks by the Tehreek-e-Taliban Pakistan (TTP). These attacks highlight the TTP's increased tactical sophistication and organizational resilience, despite years of Pakistani counter-terrorism efforts. This growing internal instability is severely straining Pakistan's relationship with the Afghan Taliban and is undermining its economic prospects and ability to project itself as a stable international power.",
       "topics": [
-        "Geopolitics",
-        "International Relations",
-        "Trade Policy"
+        "Internal Security",
+        "Terrorism",
+        "Regional Instability"
       ],
       "issues": [
-        "US-China Strategic Competition",
-        "Alliance System Dynamics"
+        "Resurgence of TTP activities in Pakistan",
+        "Deterioration of Pakistan-Afghan Taliban relations"
       ],
       "mainIdeas": [
-        "The US-China relationship is defined by managed competition, where both powers accept rivalry but seek to keep it under control.",
-        "The US is increasingly prioritizing bilateral trade outcomes and direct engagement, potentially signaling a diminished role for its traditional alliance system.",
-        "Middle powers, like India, must prepare for an era where they are expected to navigate great-power competition with greater strategic autonomy and diversified partnerships, rather than relying solely on the US."
-      ]
-    },
-    {
-      "id": "1779458288699o9vp19",
-      "url": "https://www.moneycontrol.com/news/opinion/india-s-first-digital-census-a-geospatial-blueprint-for-growth-13922358.html",
-      "title": "India’s First Digital Census: A geospatial blueprint for growth",
-      "metadataRaw": "May 18, 2026 Dr Y Nithiyanandam Money Control",
-      "source": "Takshashila Opinion",
-      "dateAdded": "2026-05-22T13:58:08.699Z",
-      "summary": "India's first fully digital census presents a significant opportunity to establish a spatially informed and data-driven governance system, effectively creating a 'digital twin' of the country for economic planning and infrastructure development. However, the process faces several challenges, including an outdated questionnaire, technical glitches, limited public awareness, and inadequate support for citizens and enumerators. To realize its transformative potential, the census requires systemic improvements, a more user-friendly approach, better communication, and extended timelines to encourage greater public participation and ensure data accuracy.",
-      "topics": [
-        "Digital Governance",
-        "Data Policy",
-        "Infrastructure Development"
-      ],
-      "issues": [
-        "Digital Census Implementation Challenges",
-        "Data Quality and Public Participation"
-      ],
-      "mainIdeas": [
-        "India's digital census holds transformative potential to create a geospatial 'digital twin' for data-driven governance and planning across economic, infrastructure, and energy sectors.",
-        "Current implementation is hampered by archaic questions, technical inaccuracies, poor user experience, and low voluntary public participation, requiring significant improvements.",
-        "Addressing grievances, improving technology, enhancing communication, and extending timelines are crucial for the census to overcome its initial hurdles and fulfill its promise as a tool for nation-building and effective public engagement."
+        "The Tehreek-e-Taliban Pakistan (TTP) has evolved into a highly capable and resilient insurgent group, able to execute complex, high-impact attacks despite Pakistan's sustained military operations.",
+        "Pakistan's efforts to curb the TTP, including diplomatic pressure on the Afghan Taliban and cross-border airstrikes, have been largely ineffective in degrading the group's operational strength.",
+        "The escalating terrorism crisis is damaging Pakistan's international standing, diverting its military focus, and jeopardizing vital foreign investments and economic recovery plans."
       ]
     }
   ],
-  "lastUpdated": "2026-05-22T13:58:17.465Z"
+  "lastUpdated": "2026-05-22T14:31:55.359Z"
 }
