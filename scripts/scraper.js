@@ -14,6 +14,62 @@ dotenv.config({ path: path.join(__dirname, '../.env') });
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 const DATA_FILE = path.join(__dirname, '../src/data/articles.json');
 
+// Cap how many *new* articles we summarize per run to bound Gemini usage.
+const MAX_NEW_PER_RUN = 25;
+
+// Source pages on the Takshashila site. `kind` distinguishes external op-eds
+// (links point to third-party publishers) from internal research outputs
+// (links are relative paths to content/publications/*.html).
+const SOURCES = [
+  {
+    name: 'news',
+    type: 'opinion',
+    url: 'https://takshashila.org.in/pages/news/',
+    source: 'Takshashila Opinion',
+  },
+  {
+    name: 'publications',
+    type: 'research',
+    url: 'https://takshashila.org.in/pages/publications/',
+    source: 'Takshashila Research',
+  },
+];
+
+// The site occasionally renders hrefs wrapped in parentheses, e.g.
+// "https://(https://real-url)" or "https://(www.real-url)". Unwrap those and
+// resolve relative links against the page they came from. Returns a clean
+// absolute http(s) URL, or null if it can't be salvaged.
+function sanitizeHref(href, pageUrl) {
+  if (!href) return null;
+  let h = href.trim();
+
+  // Unwrap a parenthesised inner URL: "https://(https://x)" / "https://(www.x)"
+  const wrapped = h.match(/\((https?:\/\/[^)]+|www\.[^)]+)\)/i);
+  if (wrapped) h = wrapped[1];
+
+  // Strip any stray leading/trailing parentheses left behind.
+  h = h.replace(/^[("']+/, '').replace(/[)"']+$/, '');
+
+  // Bare "www." -> add scheme.
+  if (/^www\./i.test(h)) h = `https://${h}`;
+
+  try {
+    const resolved = new URL(h, pageUrl).href;
+    return resolved.startsWith('http') ? resolved : null;
+  } catch {
+    return null;
+  }
+}
+
+// Pull an ISO date out of a metadata string like "May 20, 2026 Author Publication".
+function parsePublishedDate(metadataStr) {
+  if (!metadataStr) return null;
+  const m = metadataStr.match(/([A-Z][a-z]{2,}\.?\s+\d{1,2},\s+\d{4})/);
+  if (!m) return null;
+  const d = new Date(m[1]);
+  return isNaN(d.getTime()) ? null : d.toISOString();
+}
+
 async function extractArticleText(url) {
   try {
     console.log(`Fetching article: ${url}`);
@@ -32,7 +88,7 @@ async function extractArticleText(url) {
 async function summarizeWithGemini(text, title, url) {
   try {
     const prompt = `
-      You are an executive assistant for a busy C-suite executive. I will provide you with an article text. 
+      You are an executive assistant for a busy C-suite executive. I will provide you with an article text.
       I want you to analyze it and return a JSON object with the following structure:
       {
         "summary": "A 3-4 sentence summary of the article.",
@@ -40,17 +96,17 @@ async function summarizeWithGemini(text, title, url) {
         "issues": ["Array of 1-2 specific issues addressed, e.g., 'US-China Relations'"],
         "mainIdeas": ["Array of 2-3 key takeaways or main arguments made by the author"]
       }
-      
+
       CRITICAL INSTRUCTIONS FOR TONE AND LANGUAGE:
       - Write in plain, clear English suitable for a well-informed adult.
       - DO NOT use academic International Relations (IR) jargon or convoluted phrasing (e.g., avoid terms like "constructive strategic stability", "middle powers", "strategic autonomy", "reciprocal concessions").
       - Break down complex policy ideas into their practical, real-world meaning.
       - Be direct and get straight to the point.
-      
+
       Article Title: ${title}
       Article Text:
       ${text.substring(0, 15000)} // Limiting text to avoid token limits
-      
+
       Return ONLY valid JSON.
     `;
 
@@ -58,7 +114,7 @@ async function summarizeWithGemini(text, title, url) {
       model: 'gemini-2.5-flash',
       contents: prompt,
     });
-    
+
     const responseText = response.text.replace(/```json/g, '').replace(/```/g, '').trim();
     return JSON.parse(responseText);
   } catch (err) {
@@ -67,73 +123,93 @@ async function summarizeWithGemini(text, title, url) {
   }
 }
 
-async function run() {
-  console.log('Starting scraper...');
-  
-  // 1. Fetch News/Op-eds
-  const newsUrl = 'https://takshashila.org.in/pages/news/';
-  const res = await fetch(newsUrl);
+// Scrape one source page into a list of { url, title, metadataStr, type, source }.
+async function collectFromSource(src) {
+  console.log(`\nScraping ${src.name}: ${src.url}`);
+  const res = await fetch(src.url);
   const html = await res.text();
   const $ = cheerio.load(html);
 
-  // Group by href to get both title and metadata
+  // Group links by their cleaned href, gathering the distinct text fragments
+  // (title + metadata) that point at the same article.
   const linksMap = new Map();
   $('a').each((i, el) => {
-    const href = $(el).attr('href');
+    const rawHref = $(el).attr('href');
+    const href = sanitizeHref(rawHref, src.url);
     const text = $(el).text().replace(/\s+/g, ' ').trim();
-    
-    if (href && href.startsWith('http') && text.length > 5) {
-      if (!linksMap.has(href)) {
-        linksMap.set(href, { href, parts: [] });
-      }
-      if (!linksMap.get(href).parts.includes(text)) {
-        linksMap.get(href).parts.push(text);
-      }
+    if (!href || text.length <= 5) return;
+
+    if (!linksMap.has(href)) linksMap.set(href, { href, parts: [] });
+    if (!linksMap.get(href).parts.includes(text)) {
+      linksMap.get(href).parts.push(text);
     }
   });
 
-  const rawArticles = Array.from(linksMap.values()).map(item => {
-    // Assuming part 0 is title, part 1 is metadata (Date Author Publication)
-    return {
+  return Array.from(linksMap.values())
+    .map(item => ({
       url: item.href,
       title: item.parts[0] || 'Unknown Title',
-      metadataStr: item.parts[1] || ''
-    };
-  }).filter(a => a.title.length > 15 && a.metadataStr.length > 5).slice(0, 3); // Take top 3 for initial run
+      metadataStr: item.parts[1] || '',
+      type: src.type,
+      source: src.source,
+    }))
+    .filter(a => a.title.length > 15 && a.metadataStr.length > 5);
+}
 
-  console.log(`Found ${rawArticles.length} articles to process.`);
+async function run() {
+  console.log('Starting scraper...');
 
   let existingData = { articles: [], lastUpdated: '' };
   if (fs.existsSync(DATA_FILE)) {
     existingData = JSON.parse(fs.readFileSync(DATA_FILE, 'utf-8'));
   }
+  const seen = new Set(existingData.articles.map(a => a.url));
 
-  for (const article of rawArticles) {
-    // Skip if already processed
-    if (existingData.articles.some(a => a.url === article.url)) {
-      console.log(`Skipping already processed: ${article.url}`);
-      continue;
+  // Gather candidate articles from every source.
+  let rawArticles = [];
+  for (const src of SOURCES) {
+    try {
+      const found = await collectFromSource(src);
+      console.log(`Found ${found.length} candidate articles in ${src.name}.`);
+      rawArticles = rawArticles.concat(found);
+    } catch (err) {
+      console.error(`Failed to scrape ${src.name}:`, err.message);
     }
+  }
 
-    const textContent = await extractArticleText(article.url);
-    if (!textContent || textContent.length < 200) {
-      console.log(`Could not extract enough text for ${article.url}`);
-      continue;
-    }
+  // Keep only ones we haven't processed yet, bounded per run.
+  const newArticles = rawArticles
+    .filter(a => !seen.has(a.url))
+    .slice(0, MAX_NEW_PER_RUN);
 
-    const aiData = await summarizeWithGemini(textContent, article.title, article.url);
-    
-    if (aiData) {
+  console.log(`\nProcessing ${newArticles.length} new articles...`);
+
+  for (const article of newArticles) {
+    try {
+      const textContent = await extractArticleText(article.url);
+      if (!textContent || textContent.length < 200) {
+        console.log(`Could not extract enough text for ${article.url}`);
+        continue;
+      }
+
+      const aiData = await summarizeWithGemini(textContent, article.title, article.url);
+      if (!aiData) continue;
+
       existingData.articles.unshift({
         id: new Date().getTime().toString() + Math.random().toString(36).substring(7),
         url: article.url,
         title: article.title,
         metadataRaw: article.metadataStr,
-        source: 'Takshashila Opinion',
+        publishedDate: parsePublishedDate(article.metadataStr),
+        type: article.type,
+        source: article.source,
         dateAdded: new Date().toISOString(),
-        ...aiData
+        ...aiData,
       });
-      console.log(`Processed: ${article.title}`);
+      seen.add(article.url);
+      console.log(`Processed [${article.type}]: ${article.title}`);
+    } catch (err) {
+      console.error(`Error processing ${article.url}:`, err.message);
     }
   }
 

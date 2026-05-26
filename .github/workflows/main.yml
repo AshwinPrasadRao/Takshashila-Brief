@@ -59,9 +59,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
-      - name: Generate and Send Newsletter
-        run: node scripts/newsletter.js
-        env:
-          # RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
-          NODE_ENV: production

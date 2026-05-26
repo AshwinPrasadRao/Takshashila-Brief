@@ -1,15 +1,74 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import nodemailer from 'nodemailer';
+import dotenv from 'dotenv';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+dotenv.config({ path: path.join(__dirname, '../.env') });
 
 const DATA_FILE = path.join(__dirname, '../src/data/articles.json');
+const PORTAL_URL = 'https://ashwinprasadrao.github.io/Takshashila-Insights/';
+const DAYS_WINDOW = 7;
+
+// Pick the best date we have for an article, falling back to when we scraped it.
+function articleDate(article) {
+  const d = article.publishedDate || article.dateAdded;
+  const parsed = d ? new Date(d) : null;
+  return parsed && !isNaN(parsed.getTime()) ? parsed : null;
+}
+
+function renderCard(article) {
+  return `
+    <div style="margin-top: 24px; padding: 20px; border: 1px solid #d0d7de; border-radius: 12px; background-color: #f6f8fa;">
+      <h3 style="margin-top: 0;"><a href="${article.url}" style="color: #0969da; text-decoration: none;">${article.title}</a></h3>
+      <p style="font-size: 0.9em; color: #656d76; margin: 4px 0;">${article.metadataRaw || article.source || ''}</p>
+      <p style="margin: 12px 0;"><strong>Summary:</strong> ${article.summary || ''}</p>
+      ${article.mainIdeas && article.mainIdeas.length > 0 ? `
+        <div style="background: #ffffff; padding: 15px; border-left: 4px solid #0969da; border-radius: 4px; margin-top: 15px;">
+          <h4 style="margin: 0 0 10px 0; color: #656d76; text-transform: uppercase; font-size: 0.8em;">Key Takeaways</h4>
+          <ul style="margin: 0; padding-left: 20px; font-size: 0.9em;">
+            ${article.mainIdeas.map(idea => `<li style="margin-bottom: 5px;">${idea}</li>`).join('')}
+          </ul>
+        </div>
+      ` : ''}
+    </div>
+  `;
+}
+
+function renderSection(title, articles) {
+  if (articles.length === 0) return '';
+  return `
+    <h2 style="margin-top: 36px; color: #1F2328; border-bottom: 2px solid #eaecef; padding-bottom: 6px;">${title}</h2>
+    ${articles.map(renderCard).join('')}
+  `;
+}
+
+function buildHtml({ opinion, research, weekLabel }) {
+  const empty = opinion.length === 0 && research.length === 0;
+  return `
+    <div style="font-family: 'Inter', Arial, sans-serif; max-width: 640px; margin: 0 auto; color: #1F2328; line-height: 1.6;">
+      <h1 style="color: #0969da; text-align: center; border-bottom: 2px solid #eaecef; padding-bottom: 10px;">
+        Takshashila Insights Digest
+      </h1>
+      <p style="text-align: center; color: #656d76;">${weekLabel}</p>
+      ${empty
+        ? `<p style="text-align: center; color: #656d76; margin-top: 30px;">No new op-eds or research were published in the last ${DAYS_WINDOW} days.</p>`
+        : renderSection('In the News', opinion) + renderSection('Research Outputs', research)}
+      <p style="text-align: center; margin-top: 40px; font-size: 0.85em; color: #656d76;">
+        Browse the full archive on the <a href="${PORTAL_URL}" style="color: #0969da;">Insights portal</a>.
+      </p>
+      <p style="text-align: center; font-size: 0.8em; color: #656d76;">
+        Powered by AI Summaries &bull; Takshashila Institution
+      </p>
+    </div>
+  `;
+}
 
 async function sendNewsletter() {
   console.log('Generating Newsletter...');
-  
+
   if (!fs.existsSync(DATA_FILE)) {
     console.log('No data found. Skipping newsletter.');
     return;
@@ -18,54 +77,58 @@ async function sendNewsletter() {
   const data = JSON.parse(fs.readFileSync(DATA_FILE, 'utf-8'));
   const articles = data.articles || [];
 
-  // In a real app, we'd filter for articles from the last 7 days.
-  // For now, we take the top 3 most recent articles.
-  const recentArticles = articles.slice(0, 3);
+  const cutoff = new Date(Date.now() - DAYS_WINDOW * 24 * 60 * 60 * 1000);
+  const recent = articles.filter(a => {
+    const d = articleDate(a);
+    return d && d >= cutoff;
+  });
 
-  if (recentArticles.length === 0) {
-    console.log('No recent articles to send.');
+  const opinion = recent.filter(a => a.type !== 'research');
+  const research = recent.filter(a => a.type === 'research');
+
+  const weekLabel = `Week of ${cutoff.toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })} – ${new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}`;
+  const html = buildHtml({ opinion, research, weekLabel });
+
+  console.log(`Found ${opinion.length} op-eds and ${research.length} research items in the last ${DAYS_WINDOW} days.`);
+
+  // Generic SMTP config — works with Brevo (smtp-relay.brevo.com:587) and any
+  // other SMTP provider without code changes. SENDER_EMAIL must be a sender
+  // address verified with the provider.
+  const { SMTP_USER, SMTP_PASS, SENDER_EMAIL, RECIPIENT_EMAIL, CC } = process.env;
+  // Defaults applied when the env var is unset OR empty (CI passes "" for unset secrets).
+  const SMTP_HOST = process.env.SMTP_HOST || 'smtp-relay.brevo.com';
+  const SMTP_PORT = process.env.SMTP_PORT || '587';
+  const SENDER_NAME = process.env.SENDER_NAME || 'Takshashila Insights';
+
+  // Without credentials (local dev), fall back to writing a preview file.
+  if (!SMTP_USER || !SMTP_PASS || !SENDER_EMAIL || !RECIPIENT_EMAIL) {
+    const outPath = path.join(__dirname, 'latest_newsletter.html');
+    fs.writeFileSync(outPath, html);
+    console.log('SMTP credentials not set — wrote preview instead.');
+    console.log(`Mock newsletter saved to ${outPath}`);
     return;
   }
 
-  let htmlContent = `
-    <div style="font-family: 'Inter', sans-serif; max-width: 600px; margin: 0 auto; color: #1F2328; line-height: 1.6;">
-      <h1 style="color: #0969da; text-align: center; border-bottom: 2px solid #eaecef; padding-bottom: 10px;">
-        Takshashila Insights Digest
-      </h1>
-      <p style="text-align: center; color: #656d76;">Here are the latest policy insights and summaries.</p>
-  `;
-
-  recentArticles.forEach(article => {
-    htmlContent += `
-      <div style="margin-top: 30px; padding: 20px; border: 1px solid #d0d7de; border-radius: 12px; background-color: #f6f8fa;">
-        <h2 style="margin-top: 0;"><a href="${article.url}" style="color: #0969da; text-decoration: none;">${article.title}</a></h2>
-        <p style="font-size: 0.9em; color: #656d76;">${article.metadataRaw}</p>
-        <p><strong>Summary:</strong> ${article.summary}</p>
-        ${article.mainIdeas && article.mainIdeas.length > 0 ? `
-          <div style="background: #ffffff; padding: 15px; border-left: 4px solid #0969da; border-radius: 4px; margin-top: 15px;">
-            <h4 style="margin: 0 0 10px 0; color: #656d76; text-transform: uppercase; font-size: 0.8em;">Key Takeaways</h4>
-            <ul style="margin: 0; padding-left: 20px; font-size: 0.9em;">
-              ${article.mainIdeas.map(idea => `<li style="margin-bottom: 5px;">${idea}</li>`).join('')}
-            </ul>
-          </div>
-        ` : ''}
-      </div>
-    `;
+  const port = Number(SMTP_PORT);
+  const transporter = nodemailer.createTransport({
+    host: SMTP_HOST,
+    port,
+    secure: port === 465, // 465 = implicit TLS; 587 = STARTTLS
+    auth: { user: SMTP_USER, pass: SMTP_PASS },
   });
 
-  htmlContent += `
-      <p style="text-align: center; margin-top: 40px; font-size: 0.8em; color: #656d76;">
-        Powered by AI Summaries &bull; Takshashila Institution
-      </p>
-    </div>
-  `;
+  await transporter.sendMail({
+    from: `${SENDER_NAME} <${SENDER_EMAIL}>`,
+    to: RECIPIENT_EMAIL,
+    cc: CC || undefined,
+    subject: `Takshashila Insights — ${weekLabel}`,
+    html,
+  });
 
-  // Write to a local HTML file as a mock dispatch
-  const outPath = path.join(__dirname, 'latest_newsletter.html');
-  fs.writeFileSync(outPath, htmlContent);
-
-  console.log(`Newsletter generated! In production, this would be dispatched via Resend API to subscribers.`);
-  console.log(`Mock newsletter saved to ${outPath}`);
+  console.log(`Newsletter emailed to ${RECIPIENT_EMAIL}.`);
 }
 
-sendNewsletter();
+sendNewsletter().catch(err => {
+  console.error('Failed to send newsletter:', err);
+  process.exit(1);
+});
