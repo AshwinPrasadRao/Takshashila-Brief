@@ -117,7 +117,12 @@ async function sendNewsletter() {
     auth: { user: SMTP_USER, pass: SMTP_PASS },
   });
 
-  await transporter.sendMail({
+  // Verify the SMTP connection/credentials before attempting to send, so auth
+  // or host problems surface as a clear failure instead of a silent success.
+  await transporter.verify();
+  console.log(`SMTP connection OK (${SMTP_HOST}:${port}).`);
+
+  const info = await transporter.sendMail({
     from: `${SENDER_NAME} <${SENDER_EMAIL}>`,
     to: RECIPIENT_EMAIL,
     cc: CC || undefined,
@@ -125,7 +130,14 @@ async function sendNewsletter() {
     html,
   });
 
+  // Log the provider's response so a run can be matched to the Brevo logs.
+  // `accepted`/`rejected` show per-recipient handoff; `response` is the raw
+  // SMTP reply; `messageId` is the key to search for in the Brevo dashboard.
   console.log(`Newsletter emailed to ${RECIPIENT_EMAIL}.`);
+  console.log(`  accepted: ${JSON.stringify(info.accepted)}`);
+  console.log(`  rejected: ${JSON.stringify(info.rejected)}`);
+  console.log(`  response: ${info.response}`);
+  console.log(`  messageId: ${info.messageId}`);
 }
 
 sendNewsletter().catch(err => {
