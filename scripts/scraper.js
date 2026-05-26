@@ -14,8 +14,10 @@ dotenv.config({ path: path.join(__dirname, '../.env') });
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 const DATA_FILE = path.join(__dirname, '../src/data/articles.json');
 
-// Cap how many *new* articles we summarize per run to bound Gemini usage.
-const MAX_NEW_PER_RUN = 25;
+// Cap how many *new* articles we summarize per source per run. A per-source
+// cap (rather than one shared cap) guarantees research outputs get pulled even
+// when there's a large backlog of news items.
+const MAX_NEW_PER_SOURCE = 15;
 
 // Source pages on the Takshashila site. `kind` distinguishes external op-eds
 // (links point to third-party publishers) from internal research outputs
@@ -165,22 +167,19 @@ async function run() {
   }
   const seen = new Set(existingData.articles.map(a => a.url));
 
-  // Gather candidate articles from every source.
-  let rawArticles = [];
+  // Gather new candidate articles from every source, capped per source so
+  // each source (news, research) gets a fair share of the run.
+  let newArticles = [];
   for (const src of SOURCES) {
     try {
       const found = await collectFromSource(src);
-      console.log(`Found ${found.length} candidate articles in ${src.name}.`);
-      rawArticles = rawArticles.concat(found);
+      const fresh = found.filter(a => !seen.has(a.url)).slice(0, MAX_NEW_PER_SOURCE);
+      console.log(`Found ${found.length} candidates in ${src.name}, ${fresh.length} new (capped at ${MAX_NEW_PER_SOURCE}).`);
+      newArticles = newArticles.concat(fresh);
     } catch (err) {
       console.error(`Failed to scrape ${src.name}:`, err.message);
     }
   }
-
-  // Keep only ones we haven't processed yet, bounded per run.
-  const newArticles = rawArticles
-    .filter(a => !seen.has(a.url))
-    .slice(0, MAX_NEW_PER_RUN);
 
   console.log(`\nProcessing ${newArticles.length} new articles...`);
 
