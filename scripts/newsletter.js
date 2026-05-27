@@ -54,7 +54,7 @@ function buildHtml({ opinion, research, weekLabel }) {
       <h1 style="color: #0969da; text-align: center; border-bottom: 2px solid #eaecef; padding-bottom: 10px;">
         Takshashila Insights Digest
       </h1>
-      <p style="text-align: center; color: #656d76;">${weekLabel}</p>
+      <p style="text-align: center; color: #656d76;">Latest insights &middot; ${weekLabel}</p>
       ${empty
         ? `<p style="text-align: center; color: #656d76; margin-top: 30px;">No new op-eds or research were published in the last ${DAYS_WINDOW} days.</p>`
         : renderSection('In the News', opinion) + renderSection('Research Outputs', research)}
@@ -88,7 +88,7 @@ async function sendNewsletter() {
   const opinion = recent.filter(a => a.type !== 'research');
   const research = recent.filter(a => a.type === 'research');
 
-  const weekLabel = `Week of ${cutoff.toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })} – ${new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}`;
+  const weekLabel = `${cutoff.toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })} – ${new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}`;
   const html = buildHtml({ opinion, research, weekLabel });
 
   console.log(`Found ${opinion.length} op-eds and ${research.length} research items in the last ${DAYS_WINDOW} days.`);
