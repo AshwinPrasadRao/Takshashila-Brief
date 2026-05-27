@@ -10,7 +10,9 @@ dotenv.config({ path: path.join(__dirname, '../.env') });
 
 const DATA_FILE = path.join(__dirname, '../src/data/articles.json');
 const PORTAL_URL = 'https://ashwinprasadrao.github.io/Takshashila-Insights/';
-const DAYS_WINDOW = 7;
+// Sent twice weekly (Mon & Thu), so a ~4-day window covers the gap between
+// sends without repeating much content.
+const DAYS_WINDOW = 4;
 
 // Pick the best date we have for an article, falling back to when we scraped it.
 function articleDate(article) {
