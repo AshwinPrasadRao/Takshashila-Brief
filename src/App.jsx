@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { ExternalLink, Tag, Hash, BookOpen } from 'lucide-react';
+import { ExternalLink, Tag, Hash, BookOpen, ChevronDown } from 'lucide-react';
 import data from './data/articles.json';
 import './index.css';
 
@@ -76,6 +76,30 @@ function App() {
     return sortedArticles.filter(a => a.topics?.includes(activeFilter));
   }, [sortedArticles, activeFilter]);
 
+  // Group into [monthLabel, articles][], newest month first. Since
+  // filteredArticles is already date-sorted desc, insertion order is correct.
+  const months = useMemo(() => {
+    const map = new Map();
+    filteredArticles.forEach(a => {
+      const d = new Date(a.publishedDate || a.dateAdded);
+      const label = isNaN(d.getTime())
+        ? 'Undated'
+        : d.toLocaleString('en-IN', { month: 'long', year: 'numeric' });
+      if (!map.has(label)) map.set(label, []);
+      map.get(label).push(a);
+    });
+    return Array.from(map.entries());
+  }, [filteredArticles]);
+
+  // Track which archive months the user has expanded. The newest month is the
+  // "current digest" (always open); a filter expands everything so matches show.
+  const [openMonths, setOpenMonths] = useState({});
+  const filtering = activeFilter !== 'All';
+  const isOpen = (label, idx) =>
+    filtering || idx === 0 || openMonths[label] === true;
+  const toggleMonth = label =>
+    setOpenMonths(prev => ({ ...prev, [label]: !prev[label] }));
+
   return (
     <div className="app-container">
       <header>
@@ -99,15 +123,48 @@ function App() {
         ))}
       </div>
 
-      <main className="articles-list">
-        {filteredArticles.length === 0 ? (
+      <main>
+        {months.length === 0 ? (
           <div className="glass" style={{padding: '2rem', textAlign: 'center', color: 'var(--text-secondary)'}}>
             No articles found for this filter.
           </div>
         ) : (
-          filteredArticles.map(article => (
-            <ArticleCard key={article.id || article.url} article={article} />
-          ))
+          months.map(([label, monthArticles], idx) => {
+            const open = isOpen(label, idx);
+            // The newest month (idx 0, unfiltered) is the headline digest and
+            // isn't collapsible; everything after it sits under "Archive".
+            const isDigest = idx === 0 && !filtering;
+            return (
+              <section key={label} className="month-section">
+                {idx === 1 && !filtering && <h2 className="archive-heading">Archive</h2>}
+                {isDigest ? (
+                  <h2 className="month-heading">{label}</h2>
+                ) : (
+                  <button
+                    className="month-toggle"
+                    aria-expanded={open}
+                    onClick={() => toggleMonth(label)}
+                  >
+                    <span>{label}</span>
+                    <span className="month-count">
+                      {monthArticles.length}
+                      <ChevronDown
+                        size={18}
+                        style={{ transform: open ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }}
+                      />
+                    </span>
+                  </button>
+                )}
+                {open && (
+                  <div className="articles-list">
+                    {monthArticles.map(article => (
+                      <ArticleCard key={article.id || article.url} article={article} />
+                    ))}
+                  </div>
+                )}
+              </section>
+            );
+          })
         )}
       </main>
 
