@@ -1,6 +1,45 @@
 {
   "articles": [
     {
+      "id": "1779855495959vdsq2",
+      "url": "https://www.deccanherald.com/opinion/counting-india-the-first-digital-census-and-its-blindspots-3974801",
+      "title": "Counting India: The first digital census and its blind spots",
+      "metadataRaw": "Apr 21, 2026 Y Nithiyanandam Deccan Herald",
+      "publishedDate": "2026-04-21T00:00:00.000Z",
+      "type": "opinion",
+      "source": "Takshashila Opinion",
+      "dateAdded": "2026-05-27T04:18:15.959Z",
+      "summary": "India's upcoming census represents a significant evolution from traditional demographic counts. It will introduce new questions to gather data on digital connectivity, gender identity, and migration influenced by climate change. This expanded scope aims to collect more comprehensive societal information beyond a basic population headcount.",
+      "topics": [
+        "Demographics",
+        "Social Data Collection",
+        "National Policy"
+      ],
+      "issues": [
+        "Modernizing census data",
+        "Tracking emerging social trends"
+      ],
+      "mainIdeas": [
+        "The upcoming Indian census will broaden its data collection significantly beyond traditional population figures.",
+        "It will include new categories for inquiry, such as digital connectivity, gender identity, and climate-induced migration.",
+        "This shift aims to capture a more detailed and current understanding of the population and societal dynamics."
+      ]
+    },
+    {
+      "id": "1779855479788tfrqyd",
+      "url": "https://www.ndtv.com/opinion/now-a-new-bill-by-35-american-lawmakers-could-upend-indian-students-careers-11435410",
+      "title": "35 US Lawmakers Just Moved A Bill That Could Upend Indian Techies’ Careers",
+      "metadataRaw": "May 1, 2026 Anil Raman NDTV",
+      "publishedDate": "2026-05-01T00:00:00.000Z",
+      "type": "opinion",
+      "source": "Takshashila Opinion",
+      "dateAdded": "2026-05-27T04:17:59.788Z",
+      "summary": "I am unable to provide a summary or analysis because the provided 'Article Text' was an error message stating 'You don't have permission to access...' a URL, rather than the content of an actual article. Please provide the full article text to proceed with the analysis.",
+      "topics": [],
+      "issues": [],
+      "mainIdeas": []
+    },
+    {
       "id": "1779810016115q8qbuq",
       "url": "https://www.ndtv.com/opinion/imagining-a-new-world-order-11435905",
       "title": "A New World Struggles To Be Born",
@@ -478,5 +517,5 @@
       ]
     }
   ],
-  "lastUpdated": "2026-05-26T15:40:29.788Z"
+  "lastUpdated": "2026-05-27T04:18:25.264Z"
 }
