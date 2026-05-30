@@ -813,6 +813,56 @@
       ]
     },
     {
+      "id": "1780113298646t2226k",
+      "url": "https://www.stratnewsglobal.com/india/digipin-a-pin-for-post-not-people",
+      "title": "DigiPin: A Pin For Post, Not People",
+      "metadataRaw": "Apr 19, 2026 Y Nithiyanandam Stratnewsglobal",
+      "publishedDate": "2026-04-19T00:00:00.000Z",
+      "type": "opinion",
+      "source": "Takshashila Opinion",
+      "dateAdded": "2026-05-30T03:54:58.646Z",
+      "summary": "DigiPin is a new 10-digit digital code developed in India to simplify location identification, replacing long and error-prone addresses. It marks a precise spot on the ground, making deliveries and interactions with public institutions more efficient. While offering significant practical benefits, there are notable concerns regarding privacy if these location codes are improperly linked with personal identity or sensitive data. The system's successful implementation also faces practical challenges, such as GPS accuracy limitations and the need for widespread user training.",
+      "topics": [
+        "Digital Public Infrastructure",
+        "Technology Adoption",
+        "Data Privacy"
+      ],
+      "issues": [
+        "Digital Address Systems in India",
+        "Data Privacy in Government Initiatives"
+      ],
+      "mainIdeas": [
+        "DigiPin offers a neutral, open, and free digital solution to India's complex addressing problem, aiming to streamline services and deliveries.",
+        "A major risk of DigiPin is the potential for misuse if precise location data is combined with personal identity or other sensitive information, making a strict separation of these data points crucial.",
+        "The system needs to overcome practical limitations like GPS accuracy, address challenges with multi-story buildings, and ensure user digital literacy for its full potential to be realized."
+      ]
+    },
+    {
+      "id": "17801133141320kx2y9",
+      "url": "https://www.thehindu.com/opinion/op-ed/pope-leo-and-trump-the-battle-for-americas-soul/article70875185.ece",
+      "title": "Pope Leo and Trump, the battle for America’s soul",
+      "metadataRaw": "Apr 17, 2026 Anil Raman Hindu",
+      "publishedDate": "2026-04-17T00:00:00.000Z",
+      "type": "opinion",
+      "source": "Takshashila Opinion",
+      "dateAdded": "2026-05-30T03:55:14.132Z",
+      "summary": "U.S. President Donald Trump publicly clashed with Pope Leo XIV after the Pope condemned the U.S.-Israeli war on Iran and criticized threats to destroy civilizations. Trump responded by attacking the Pope and posting an AI-generated image of himself as a Christ-like figure. The Pope and the Catholic Church have pushed back, asserting the need for moral limits on power and rejecting the use of faith to justify war or cruelty. This conflict underscores a fundamental struggle between political power seeking religious validation and religious institutions maintaining independent moral authority.",
+      "topics": [
+        "Religion and Governance",
+        "International Diplomacy",
+        "Moral Authority"
+      ],
+      "issues": [
+        "US-Vatican Tensions",
+        "Religious Justification for Conflict"
+      ],
+      "mainIdeas": [
+        "President Trump is attempting to use religious rhetoric and imagery to legitimize his administration's policies, particularly regarding military actions, and is intolerant of religious criticism.",
+        "Pope Leo XIV and the institutional Catholic Church are firmly resisting attempts to align faith with political agendas, insisting that religious principles must stand as independent moral checks on power.",
+        "The confrontation exposes a struggle over whether faith serves as a moral guide for society or becomes a tool for political control and validation, with global consequences."
+      ]
+    },
+    {
       "id": "17798825585112nzxul",
       "url": "https://takshashila.org.in/content/publications/Shahed-Iran-Drone-Strategy-14042026.html",
       "title": "The Shahed Drone",
@@ -1090,6 +1140,31 @@
       ]
     },
     {
+      "id": "17801133265808kvd4l",
+      "url": "https://takshashila.org.in/content/publications/20260218-Technology-Denial-Regimes.html",
+      "title": "A Strategic Assessment of Technology Denial Regimes",
+      "metadataRaw": "Feb 18, 2026 Arindam Goswami",
+      "publishedDate": "2026-02-18T00:00:00.000Z",
+      "type": "research",
+      "source": "Takshashila Research",
+      "dateAdded": "2026-05-30T03:55:26.581Z",
+      "summary": "Technology denial regimes are central to current global economic competition, but their success hinges on tightly controlled supply chains and a lack of alternatives for targeted countries. Historically, these restrictions often prompt targeted nations to invest in indigenous capabilities and diversify their supply, ultimately enhancing their technological independence. The paper suggests that the ongoing US-China rivalry, fueled by such controls, will likely lead to a lasting fragmentation of global technology markets and accelerate the development of new, independent innovation systems.",
+      "topics": [
+        "Geopolitics",
+        "Technology Policy",
+        "Global Trade"
+      ],
+      "issues": [
+        "US-China Semiconductor and AI Rivalry",
+        "Effectiveness of Export Controls"
+      ],
+      "mainIdeas": [
+        "Technology denial is effective only under specific conditions, such as tight control over supply chains and a lack of easy alternatives or partners for the targeted country.",
+        "Targeted countries can turn technology denial into a long-term advantage by investing heavily in their own research and development, diversifying supply chains, and forming alliances with other similarly constrained nations.",
+        "The primary long-term effect of technology denial may not be to stop rivals, but rather to divide global technology markets and speed up the creation of alternative, independent innovation systems, potentially strengthening the targeted countries."
+      ]
+    },
+    {
       "id": "1780027838789fqpwgr",
       "url": "https://takshashila.org.in/content/publications/20260217-state-of-ai-governance-2025.html",
       "title": "State of AI Governance, 2025",
@@ -1264,7 +1339,332 @@
         "The new law streamlines and increases operator liability for nuclear accidents but also limits additional recourse for affected parties under other laws.",
         "Achieving India's ambitious nuclear energy expansion goals requires not only these reforms but also investment in indigenous reactor technology and advanced waste management solutions."
       ]
+    },
+    {
+      "id": "1780113335844wesqr1",
+      "url": "https://takshashila.org.in/content/publications/20260108-China-Pakistan-Military-Interoperability.html",
+      "title": "Limits of China-Pakistan Military Interoperability",
+      "metadataRaw": "Jan 8, 2026 Aishwaria Sonavane",
+      "publishedDate": "2026-01-08T00:00:00.000Z",
+      "type": "research",
+      "source": "Takshashila Research",
+      "dateAdded": "2026-05-30T03:55:35.844Z",
+      "summary": "The defense partnership between China and Pakistan is deep and driven by common interests like countering India, but it's not a formal military alliance. China is Pakistan's main source for military equipment and technology, and they conduct regular joint exercises. However, differences in military strategies and technical capabilities prevent their forces from working together seamlessly in a combat situation. This arrangement benefits both nations by enhancing Pakistan's military power and giving China strategic influence, without committing to a full-fledged, integrated alliance.",
+      "topics": [
+        "Geopolitics",
+        "Defense Cooperation",
+        "Bilateral Relations"
+      ],
+      "issues": [
+        "China-Pakistan military integration challenges",
+        "Regional power balance in South Asia"
+      ],
+      "mainIdeas": [
+        "The China-Pakistan defense partnership is robust but deliberately avoids a formal alliance, operating as an interest-driven arrangement.",
+        "Despite significant military cooperation and arms supply from China, practical differences in how their militaries operate and in their technology prevent them from fully integrating their forces for combined combat.",
+        "This relationship allows China to gain strategic leverage against India and test its military hardware, while Pakistan boosts its defense capabilities and maintains a degree of independence from Western influence."
+      ]
+    },
+    {
+      "id": "1780113343342jvdny6",
+      "url": "https://takshashila.org.in/content/publications/20260105-China-Military-Exercises.html",
+      "title": "Sounding the Bugle",
+      "metadataRaw": "Jan 5, 2026 Anushka Saxena",
+      "publishedDate": "2026-01-05T00:00:00.000Z",
+      "type": "research",
+      "source": "Takshashila Research",
+      "dateAdded": "2026-05-30T03:55:43.342Z",
+      "summary": "Since August 2022, China has conducted several large-scale military exercises around Taiwan, typically triggered by high-profile U.S. official visits to the island. These drills showcase the People's Liberation Army's (PLA) capabilities in multi-domain operations, including live-fire exercises, blockade, and seizure scenarios. Beijing uses these military actions as a strong warning to deter \"Taiwan independence\" and to push back against perceived U.S. interference in its claim over Taiwan.",
+      "topics": [
+        "Geopolitics",
+        "Military Operations",
+        "Regional Stability"
+      ],
+      "issues": [
+        "Taiwan Strait Dynamics",
+        "US-China Strategic Rivalry"
+      ],
+      "mainIdeas": [
+        "China consistently responds to perceived U.S.-Taiwan collaborations, such as high-level visits or arms sales, with significant military exercises around Taiwan.",
+        "The People's Liberation Army (PLA) uses these drills to demonstrate and refine its capabilities for multi-domain operations, including blockades, simulated attacks, and seizure scenarios, indicating its resolve regarding Taiwan.",
+        "These military exercises serve as a clear warning from Beijing, asserting its strong opposition to any actions it views as challenging its sovereignty over Taiwan or supporting its independence."
+      ]
+    },
+    {
+      "id": "1780113355532ie23wm",
+      "url": "https://takshashila.org.in/content/publications/20251223-China-Views-K-Visa.html",
+      "title": "The Talent Pill, Red or Blue?",
+      "metadataRaw": "Dec 23, 2025 Anushka Saxena",
+      "publishedDate": "2025-12-23T00:00:00.000Z",
+      "type": "research",
+      "source": "Takshashila Research",
+      "dateAdded": "2026-05-30T03:55:55.532Z",
+      "summary": "China introduced a new K-Visa in late 2025 to attract global STEM talent, allowing them to apply for jobs after arriving without an employer sponsor. This policy is a direct response to recent restrictive US H-1B visa changes, which have made it harder for STEM professionals to work in America. The K-Visa aims to bolster China's economic and technological standing in a competitive global environment. However, the policy faces internal debate, with some viewing it as essential for national growth and others concerned about its impact on domestic youth unemployment and the quality of incoming foreign workers.",
+      "topics": [
+        "Global Talent Competition",
+        "Economic Strategy",
+        "Immigration Policy"
+      ],
+      "issues": [
+        "China's K-Visa Policy",
+        "Domestic Economic Concerns"
+      ],
+      "mainIdeas": [
+        "China launched the K-Visa to directly compete with the US for global STEM talent, leveraging recent US visa restrictions to attract skilled workers.",
+        "The K-Visa has strong advocates who believe it's vital for China's technological advancement and global standing, seeing it as a way to counter economic isolation and foster innovation.",
+        "Significant opposition exists within China, particularly due to high youth unemployment and fears that the K-Visa will bring in low-quality foreign workers who will compete for scarce jobs."
+      ]
+    },
+    {
+      "id": "178011337859534by69",
+      "url": "https://takshashila.org.in/content/publications/20251219-Taiwan-Workshop-Report.html",
+      "title": "Faultlines & Fallouts",
+      "metadataRaw": "Dec 19, 2025 Manoj Kewalramani, Anushka Saxena, Amit Kumar",
+      "publishedDate": "2025-12-19T00:00:00.000Z",
+      "type": "research",
+      "source": "Takshashila Research",
+      "dateAdded": "2026-05-30T03:56:18.595Z",
+      "summary": "The article explores the potential economic and technological impacts on India and the world from a major crisis in the Taiwan Strait, covering scenarios from a blockade to an invasion. Experts concluded that India should prioritize diversifying its technology supply chains and building domestic manufacturing capabilities over simply stockpiling goods. They also stressed the need for the Indian government to act quickly and establish emergency funds to protect businesses. Beyond economics, the crisis is seen as a political turning point that will force India to make difficult decisions about its alliances and regional standing.",
+      "topics": [
+        "Geopolitics",
+        "Global Economics",
+        "Technology & Supply Chains"
+      ],
+      "issues": [
+        "Taiwan Strait Stability",
+        "Semiconductor Supply Chain Resilience"
+      ],
+      "mainIdeas": [
+        "Any conflict in the Taiwan Strait will severely disrupt global economies and critical technology supply chains, particularly for semiconductors.",
+        "India must proactively build domestic manufacturing capabilities and diversify its supply chains, along with setting up emergency financial support for businesses, rather than relying on stockpiling.",
+        "The crisis presents a major political challenge, requiring India to clarify its global position and prepare for significant shifts in regional power balances."
+      ]
+    },
+    {
+      "id": "1780113366453twb2jc",
+      "url": "https://takshashila.org.in/content/publications/20251219-Orbital-Entrenchment.html",
+      "title": "Orbital Entrenchment",
+      "metadataRaw": "Dec 19, 2025 Ashwin Prasad Rao",
+      "publishedDate": "2025-12-19T00:00:00.000Z",
+      "type": "research",
+      "source": "Takshashila Research",
+      "dateAdded": "2026-05-30T03:56:06.453Z",
+      "summary": "Megaconstellations, primarily from companies like SpaceX, are rapidly filling Low Earth Orbit (LEO), exploiting current \"first-come, first-served\" rules to secure prime orbital paths and communication frequencies indefinitely. This rapid expansion creates a severe scarcity of space resources, making it extremely difficult for new entrants or developing nations to access LEO. If left unaddressed, this trend risks deepening geopolitical divides and fragmenting global internet access, necessitating significant reforms to international space governance, such as introducing temporary orbital rights and charging for orbital use.",
+      "topics": [
+        "Space Industry",
+        "Global Connectivity",
+        "Regulation"
+      ],
+      "issues": [
+        "Fair Access to Space Resources",
+        "Orbital Crowding"
+      ],
+      "mainIdeas": [
+        "The unchecked proliferation of large satellite networks in Low Earth Orbit (LEO) is quickly saturating available space and communication frequencies.",
+        "Existing international regulations allow early and dominant operators to secure permanent access to these vital resources, effectively locking out new players and future generations.",
+        "This situation threatens to worsen international relations and create an uneven global landscape for internet access, demanding urgent changes to how space is governed to ensure equitable and sustainable use."
+      ]
+    },
+    {
+      "id": "1780113388285phsnpe",
+      "url": "https://takshashila.org.in/content/publications/20251216-Bio-Plastics-Biomanufacturing-Opportunity-for-India.html",
+      "title": "Bio-Plastics - Biomanufacturing Opportunity for India",
+      "metadataRaw": "Dec 16, 2025 Shambhavi Naik, Saurabh Todi",
+      "publishedDate": "2025-12-16T00:00:00.000Z",
+      "type": "research",
+      "source": "Takshashila Research",
+      "dateAdded": "2026-05-30T03:56:28.286Z",
+      "summary": "India has a significant opportunity to become a global leader in bioplastics manufacturing, especially for Polylactic Acid (PLA), aligning environmental goals with industrial growth. The country's domestic bioplastics market is rapidly expanding, but India currently holds a very small share of the global market, indicating vast potential for both domestic supply and exports. While India benefits from abundant agricultural feedstocks and fermentation expertise, it faces challenges such as limited advanced manufacturing capacity and competition for raw materials. To realize this potential, a strategic approach involving state-clustered development, targeted research, and supportive regulations is recommended.",
+      "topics": [
+        "Biomanufacturing",
+        "Economic Development",
+        "Environmental Policy"
+      ],
+      "issues": [
+        "Building domestic bioplastics production capacity",
+        "Managing competition for agricultural raw materials"
+      ],
+      "mainIdeas": [
+        "India has a major economic and environmental opportunity to scale up bioplastics (PLA) production, which can reduce imports, create jobs, and help manage plastic waste.",
+        "Despite having strong agricultural resources, India faces key hurdles like insufficient domestic capacity for advanced bioplastics manufacturing and competition for its agricultural feedstocks from other industries.",
+        "A targeted national strategy, focusing on developing state-level industrial clusters, investing in research and development, and implementing supportive regulatory frameworks, is crucial for India to establish itself as a competitive global bioplastics hub."
+      ]
+    },
+    {
+      "id": "17801133957317uqc4",
+      "url": "https://takshashila.org.in/content/publications/20251215-regionalisation-of-the-indian-rupee.html",
+      "title": "Regionalisation of the Indian Rupee",
+      "metadataRaw": "Dec 12, 2025 Vanshika Saraf, Anupam Manur",
+      "publishedDate": "2025-12-12T00:00:00.000Z",
+      "type": "research",
+      "source": "Takshashila Research",
+      "dateAdded": "2026-05-30T03:56:35.731Z",
+      "summary": "This article advocates for greater use of the Indian Rupee (INR) for trade and financial transactions in the Indian subcontinent. It argues that the current reliance on the US dollar creates unnecessary costs and vulnerabilities for regional economies. By promoting the INR, India can enhance transactional efficiency, solidify its economic leadership, and strengthen regional financial ties. Successful regionalization requires key institutional changes, while also addressing the concerns of neighboring countries.",
+      "topics": [
+        "Regional Economy",
+        "Currency Strategy",
+        "Trade Relations"
+      ],
+      "issues": [
+        "Reducing dependence on the US dollar",
+        "Boosting regional trade efficiency"
+      ],
+      "mainIdeas": [
+        "Relying on the US dollar for cross-border transactions in the Indian subcontinent is costly and risky, making the Indian Rupee a more practical alternative for regional trade.",
+        "For the Rupee to be widely adopted regionally, India must establish a Free Trade Area, offer bilateral currency swap lines, and integrate cross-border payment systems.",
+        "Promoting the Rupee regionally can improve trade efficiency, enhance India's economic influence, and help stabilize the finances of neighboring countries, provided their concerns about dependency are addressed."
+      ]
+    },
+    {
+      "id": "1780113404243smflzx",
+      "url": "https://takshashila.org.in/content/publications/20251112-LAWS.html",
+      "title": "A Proposed Stance for India on LAWS",
+      "metadataRaw": "Dec 10, 2025 Adya Madhavan",
+      "publishedDate": "2025-12-10T00:00:00.000Z",
+      "type": "research",
+      "source": "Takshashila Research",
+      "dateAdded": "2026-05-30T03:56:44.243Z",
+      "summary": "This article proposes a framework for India on how to approach lethal autonomous weapons systems (LAWS), arguing that a complete ban is unlikely due to their increasing military importance and the dual-use nature of AI. It suggests a focus on establishing clear guidelines to ensure ethical and responsible deployment, with human control at the core. The proposed framework includes redefining LAWS to prioritize mandatory human oversight, setting limits on their operational capabilities, and prohibiting their use with nuclear weapons. The author recommends that India champion these principles globally to shape the governance of military AI before pursuing a legally binding international agreement.",
+      "topics": [
+        "Military Technology",
+        "Artificial Intelligence",
+        "International Governance"
+      ],
+      "issues": [
+        "Regulation of autonomous weapons",
+        "Ensuring human oversight in warfare"
+      ],
+      "mainIdeas": [
+        "A complete ban on lethal autonomous weapons systems (LAWS) is impractical, necessitating a focus on establishing clear guidelines for their responsible and ethical use.",
+        "Any effective framework for LAWS must prioritize mandatory human control and accountability, placing explicit constraints on the systems' operational range, endurance, and payload capabilities.",
+        "India should proactively define and advocate for these principles internationally to protect its own security interests and play a leading role in shaping the global governance of military artificial intelligence."
+      ]
+    },
+    {
+      "id": "178011341139717w148",
+      "url": "https://takshashila.org.in/content/publications/20251209-geospatial-governance-global.html",
+      "title": "Geospatial Governance in a Global Context",
+      "metadataRaw": "Dec 9, 2025 Dr Y Nithiyanandam, Swathi Kalyani",
+      "publishedDate": "2025-12-09T00:00:00.000Z",
+      "type": "research",
+      "source": "Takshashila Research",
+      "dateAdded": "2026-05-30T03:56:51.397Z",
+      "summary": "This article explores how geospatial technologies, such as GIS and satellite data, have become critical tools for national policy, global cooperation, and strategic decision-making. It details how major countries like the U.S., China, and the EU integrate these technologies into their national security, digital, and economic plans. The piece also examines ongoing tensions between open data policies and national security concerns, emphasizing the need for coordinated, ethical, and compatible geospatial governance frameworks to support global stability and development.",
+      "topics": [
+        "Digital Governance",
+        "National Security",
+        "Global Policy"
+      ],
+      "issues": [
+        "Balancing open data sharing with national security needs",
+        "Promoting compatible global data systems"
+      ],
+      "mainIdeas": [
+        "Geospatial technologies have transitioned from technical tools to fundamental instruments shaping national governance, diplomacy, and security worldwide.",
+        "Nations are actively integrating geospatial frameworks into their core national strategies, from defense doctrines to economic development plans.",
+        "Effective global geospatial governance requires addressing complex challenges like data access versus security, and establishing ethical, interconnected data infrastructures for sustainable development."
+      ]
+    },
+    {
+      "id": "1780113421399nfbkf3",
+      "url": "https://takshashila.org.in/content/publications/20251117-China-s-Green-Hydrogen-Landscape.html",
+      "title": "China’s Green Hydrogen Landscape",
+      "metadataRaw": "Nov 17, 2025 Bhumika Sevkani",
+      "publishedDate": "2025-11-17T00:00:00.000Z",
+      "type": "research",
+      "source": "Takshashila Research",
+      "dateAdded": "2026-05-30T03:57:01.399Z",
+      "summary": "China is actively working to dominate the green hydrogen industry, using the same aggressive approach of large-scale capacity building and government incentives that it applied to electric vehicles. The country sees green hydrogen as a critical tool to achieve its carbon peaking and neutrality goals by 2030 and 2060, respectively, and is already a major global producer. China is heavily investing in electrolyser manufacturing, production facilities, and infrastructure like refueling stations, supported by a mix of national plans and tailored provincial strategies. While these efforts are significant, the article notes ongoing hurdles related to efficient hydrogen storage, transportation, and growing domestic demand.",
+      "topics": [
+        "Green Energy",
+        "Industrial Policy",
+        "Climate Change"
+      ],
+      "issues": [
+        "China's Green Hydrogen Strategy",
+        "Industrial Decarbonization"
+      ],
+      "mainIdeas": [
+        "China is aggressively positioning itself to lead the global green hydrogen market through heavy investment and strategic industrial policies, similar to its past success in electric vehicles.",
+        "Green hydrogen is considered essential for China to meet its ambitious climate goals of carbon peaking by 2030 and neutrality by 2060.",
+        "Despite significant progress in production and manufacturing, China faces practical challenges in storing, transporting, and increasing the domestic demand for green hydrogen."
+      ]
+    },
+    {
+      "id": "1780113432539mc18e",
+      "url": "https://takshashila.org.in/content/publications/20251114-Nuclear-Testing.html",
+      "title": "Testing in the 21st Century",
+      "metadataRaw": "Nov 14, 2025 Adya Madhavan",
+      "publishedDate": "2025-11-14T00:00:00.000Z",
+      "type": "research",
+      "source": "Takshashila Research",
+      "dateAdded": "2026-05-30T03:57:12.539Z",
+      "summary": "The article outlines the history of nuclear weapons testing, the severe environmental and health risks it poses, and the international treaties designed to ban it. Although a strong global norm against testing exists, the Comprehensive Test Ban Treaty (CTBT) has not formally entered into force as several key nations, including the US, have not ratified it. While the former US administration expressed interest in resuming tests, the article concludes there are minimal technical benefits and significant risks, including potentially sparking a new global arms race.",
+      "topics": [
+        "Nuclear Arms Control",
+        "International Security",
+        "Geopolitics"
+      ],
+      "issues": [
+        "Nuclear Weapons Testing",
+        "Treaty Non-Ratification"
+      ],
+      "mainIdeas": [
+        "Nuclear weapons testing has been largely halted due to its severe environmental and health impacts, leading to international treaties aimed at a complete ban.",
+        "Despite a strong international norm against explosive testing and the existence of the Comprehensive Test Ban Treaty (CTBT), its non-ratification by key nations, including the US, leaves the ban vulnerable.",
+        "Resuming nuclear tests offers negligible technical advantages for established nuclear powers but risks breaking the global moratorium and escalating international tensions by encouraging other nations to test."
+      ]
+    },
+    {
+      "id": "1780113439633odpr9r",
+      "url": "https://takshashila.org.in/content/publications/20251103-LEPF-Policy-Brief-AI-Assisted-FIR-Registration.html",
+      "title": "Smart FIRs - Leveraging AI to Improve Efficiency and Trust in India’s Police System",
+      "metadataRaw": "Nov 3, 2025 Megha Nambiar, Kartik Singh",
+      "publishedDate": "2025-11-03T00:00:00.000Z",
+      "type": "research",
+      "source": "Takshashila Research",
+      "dateAdded": "2026-05-30T03:57:19.633Z",
+      "summary": "The article proposes leveraging Artificial Intelligence to significantly improve India's First Information Report (FIR) registration process, addressing issues like delays, manual errors, and public distrust. It analyzes different levels of technology integration, recommending a hybrid approach that combines AI tools for efficiency with human oversight for complex cases. The authors suggest a pilot program in two districts in Karnataka to test the system's effectiveness. If successful, this modernized FIR process could be scaled nationwide to deliver more efficient and citizen-centric justice.",
+      "topics": [
+        "Law Enforcement Modernization",
+        "Digital Governance",
+        "Public Service Improvement"
+      ],
+      "issues": [
+        "Inefficient police reporting procedures",
+        "Low public trust in police"
+      ],
+      "mainIdeas": [
+        "India's current manual FIR system is inefficient, inconsistent, and erodes public trust, highlighting a critical need for modernization.",
+        "Integrating AI, particularly through a hybrid model that supports both citizens and police officers, can dramatically enhance the speed, accuracy, and accessibility of FIR filing.",
+        "A phased pilot project is recommended to test the effectiveness of this AI-driven approach, with the ultimate goal of nationwide implementation to improve justice delivery."
+      ]
+    },
+    {
+      "id": "17801134508436df9ts",
+      "url": "https://takshashila.org.in/content/publications/20251028-china-new-military-forces.html",
+      "title": "New Frontiers in China’s Military Organisation",
+      "metadataRaw": "Oct 30, 2025 Anushka Saxena",
+      "publishedDate": "2025-10-30T00:00:00.000Z",
+      "type": "research",
+      "source": "Takshashila Research",
+      "dateAdded": "2026-05-30T03:57:30.843Z",
+      "summary": "China's military has recently reorganized its key support forces, disbanding the Strategic Support Force and establishing three new, independent units: the Information Support Force, Cyberspace Force, and Military Aerospace Force. These new forces report directly to the Central Military Commission. This significant restructuring aims to give China a decisive edge in critical areas of modern conflict, such as information, cyber, and space operations. The changes are also designed to improve military efficiency, address past issues with internal coordination, and combat corruption.",
+      "topics": [
+        "Military Strategy",
+        "Technology and Defense",
+        "National Security"
+      ],
+      "issues": [
+        "Chinese military command and control reform",
+        "Development of advanced warfare capabilities"
+      ],
+      "mainIdeas": [
+        "China has fundamentally restructured its military support units to gain dominance in crucial domains of future warfare: information, cyberspace, and outer space.",
+        "The reorganization addresses past problems within the former Strategic Support Force, such as poor resource sharing and internal inefficiencies, by placing new specialized units under direct central command.",
+        "This move aims to enhance the military's ability to wage modern, technology-driven wars, improve overall combat effectiveness, and ensure accountability, including countering corruption risks."
+      ]
     }
   ],
-  "lastUpdated": "2026-05-29T04:11:37.485Z"
+  "lastUpdated": "2026-05-30T03:57:30.843Z"
 }
